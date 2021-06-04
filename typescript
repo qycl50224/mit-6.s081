@@ -1,0 +1,320 @@
+Script started on 2021-06-03 20:30:18-07:00 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="74" LINES="45"]
+]0;ycl@ubuntu: ~/Desktop/xv6-labs-2020[01;32mycl@ubuntu[00m:[01;34m~/Desktop/xv6-labs-2020[00m$ scri[K[K[K[Kman script
+[?1049h[22;0;0t[?1h=SCRIPT(1)                     User Commands                    SCRIPT(1)[m
+[m
+[1mNAME[0m[m
+       script - make typescript of terminal session[m
+[m
+[1mSYNOPSIS[0m[m
+       [1mscript[0m [options] [[4mfile[24m][m
+[m
+[1mDESCRIPTION[0m[m
+       [1mscript[0m  makes a typescript of everything displayed on your termi‐[m
+       nal.  It is useful for students who need a hardcopy record of  an[m
+       interactive  session as proof of an assignment, as the typescript[m
+       file can be printed out later with [1mlpr[0m(1).[m
+[m
+       If the argument [4mfile[24m is given, [1mscript[0m saves the dialogue in  this[m
+       [4mfile[24m.  If no filename is given, the dialogue is saved in the file[m
+       [1mtypescript[0m.[m
+[m
+[1mOPTIONS[0m[m
+       Below, the [4msize[24m argument may be followed  by  the  multiplicative[m
+       suffixes  KiB  (=1024), MiB (=1024*1024), and so on for GiB, TiB,[m
+       PiB, EiB, ZiB and YiB (the "iB" is optional,  e.g.  "K"  has  the[m
+       same   meaning   as  "KiB"),  or  the  suffixes  KB  (=1000),  MB[m
+       (=1000*1000), and so on for GB, TB, PB, EB, ZB and YB.[m
+[m
+       [1m-a[0m, [1m--append[0m[m
+              Append the output to [4mfile[24m or to [1mtypescript[0m, retaining  the[m
+              prior contents.[m
+[m
+       [1m-c[0m, [1m--command[0m [4mcommand[24m[m
+              Run  the  [4mcommand[24m  rather than an interactive shell.  This[m
+              makes it easy for a script to capture the output of a pro‐[m
+              gram  that  behaves  differently  when its stdout is not a[m
+              tty.[m
+[m
+       [1m-e[0m, [1m--return[0m[m
+              Return the exit code of the child process.  Uses the  same[m
+              format as bash termination on signal termination exit code[m
+              is 128+n.  The exit code of the child  process  is  always[m
+              stored in type script file too.[m
+[m
+       [1m-f[0m, [1m--flush[0m[m
+              Flush output after each write.  This is nice for telecoop‐[m
+              eration: one person does `mkfifo foo; script -f foo',  and[m
+[7m Manual page script(1) line 1 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K              another  can  supervise real-time what is being done using[m
+[7m Manual page script(1) line 2 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K              `cat foo'.[m
+[7m Manual page script(1) line 3 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K[m
+[7m Manual page script(1) line 4 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K       [1m--force[0m[m
+[7m Manual page script(1) line 5 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K              Allow the default output destination, i.e. the  typescript[m
+[7m Manual page script(1) line 6 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K              file,  to  be  a  hard or symbolic link.  The command will[m
+[7m Manual page script(1) line 7 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K              follow a symbolic link.[m
+[7m Manual page script(1) line 8 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K[m
+[7m Manual page script(1) line 9 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K       [1m-o[0m, [1m--output-limit[0m [4msize[24m[m
+[7m Manual page script(1) line 10 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K              Limit the size of the typescript and timing files to  [4msize[24m[m
+[7m Manual page script(1) line 11 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K              and  stop  the  child process after this size is exceeded.[m
+[7m Manual page script(1) line 12 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K              The calculated file size does not include  the  start  and[m
+[7m Manual page script(1) line 13 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K              done messages that the [1mscript[0m command prepends and appends[m
+[7m Manual page script(1) line 14 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K              to the child process output.  Due to  buffering,  the  re‐[m
+[7m Manual page script(1) line 15 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K              sulting  output  file  might  be larger than the specified[m
+[7m Manual page script(1) line 16 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K              value.[m
+[7m Manual page script(1) line 17 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K[m
+[7m Manual page script(1) line 18 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K       [1m-q[0m, [1m--quiet[0m[m
+[7m Manual page script(1) line 19 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K              Be quiet (do not write start and done messages to standard[m
+[7m Manual page script(1) line 20 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K              output).[m
+[7m Manual page script(1) line 21 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K[m
+[7m Manual page script(1) line 22 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K       [1m-t[0m[[4mfile[24m], [1m--timing[0m[=[4mfile[24m][m
+[7m Manual page script(1) line 23 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K              Output  timing  data  to  standard  error, or to [4mfile[24m when[m
+[7m Manual page script(1) line 24 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K              given.  This data contains  two  fields,  separated  by  a[m
+[7m Manual page script(1) line 25 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K              space.   The  first  field indicates how much time elapsed[m
+[7m Manual page script(1) line 26 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K              since the previous output.  The second field indicates how[m
+[7m Manual page script(1) line 27 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K              many  characters  were output this time.  This information[m
+[7m Manual page script(1) line 28 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K              can be used to replay typescripts  with  realistic  typing[m
+[7m Manual page script(1) line 29 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K              and output delays.[m
+[7m Manual page script(1) line 30 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K[m
+[7m Manual page script(1) line 31 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K       [1m-V[0m, [1m--version[0m[m
+[7m Manual page script(1) line 32 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K              Display version information and exit.[m
+[7m Manual page script(1) line 33 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K[m
+[7m Manual page script(1) line 34 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K       [1m-h[0m, [1m--help[0m[m
+[7m Manual page script(1) line 35 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K              Display help text and exit.[m
+[7m Manual page script(1) line 36 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K[m
+[7m Manual page script(1) line 37 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K[1mNOTES[0m[m
+[7m Manual page script(1) line 38 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K       The  script ends when the forked shell exits (a [4mcontrol-D[24m for the[m
+[7m Manual page script(1) line 39 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K       Bourne shell ([1msh[0m(1)), and [4mexit[24m, [4mlogout[24m or [4mcontrol-d[24m (if [4mignoreeof[24m[m
+[7m Manual page script(1) line 40 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K       is not set) for the C-shell, [1mcsh[0m(1)).[m
+[7m Manual page script(1) line 41 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K[m
+[7m Manual page script(1) line 42 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K       Certain  interactive  commands,  such as [1mvi[0m(1), create garbage in[m
+[7m Manual page script(1) line 43 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K       the typescript file.  [1mscript[0m works best with commands that do not[m
+[7m Manual page script(1) line 44 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K       manipulate  the  screen, the results are meant to emulate a hard‐[m
+[7m Manual page script(1) line 45 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K       copy terminal.[m
+[7m Manual page script(1) line 46 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K[m
+[7m Manual page script(1) line 47 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K       It is not recommended to run [1mscript[0m  in  non-interactive  shells.[m
+[7m Manual page script(1) line 48 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K       The  inner  shell of [1mscript[0m is always interactive, and this could[m
+[7m Manual page script(1) line 49 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K       lead to unexpected results.  If you use [1mscript[0m in the shell  ini‐[m
+[7m Manual page script(1) line 50 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K       tialization  file,  you  have to avoid entering an infinite loop.[m
+[7m Manual page script(1) line 51 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K       You can use for example the [1m.profile[0m file, which is read by login[m
+[7m Manual page script(1) line 52 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K       shells only:[m
+[7m Manual page script(1) line 53 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K[m
+[7m Manual page script(1) line 54 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K              if test -t 0 ; then[m
+[7m Manual page script(1) line 55 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K                  script[m
+[7m Manual page script(1) line 56 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K                  exit[m
+[7m Manual page script(1) line 57 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K              fi[m
+[7m Manual page script(1) line 58 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K[m
+[7m Manual page script(1) line 59 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K       You  should  also avoid use of script in command pipes, as [1mscript[0m[m
+[7m Manual page script(1) line 60 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K       can read more input than you would expect.[m
+[7m Manual page script(1) line 61 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K[m
+[7m Manual page script(1) line 62 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K[1mENVIRONMENT[0m[m
+[7m Manual page script(1) line 63 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K       The following environment variable is utilized by [1mscript[0m:[m
+[7m Manual page script(1) line 64 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K[m
+[7m Manual page script(1) line 65 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K       [1mSHELL[0m  If the variable [1mSHELL[0m exists, the shell forked  by  [1mscript[0m[m
+[7m Manual page script(1) line 66 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K              will be that shell.  If [1mSHELL[0m is not set, the Bourne shell[m
+[7m Manual page script(1) line 67 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K              is assumed.  (Most  shells  set  this  variable  automati‐[m
+[7m Manual page script(1) line 68 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K              cally).[m
+[7m Manual page script(1) line 69 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K[m
+[7m Manual page script(1) line 70 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K[1mSEE[0m [1mALSO[0m[m
+[7m Manual page script(1) line 71 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K       [1mcsh[0m(1) (for the [4mhistory[24m mechanism), [1mscriptreplay[0m(1)[m
+[7m Manual page script(1) line 72 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K[m
+[7m Manual page script(1) line 73 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K[1mHISTORY[0m[m
+[7m Manual page script(1) line 74 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K       The [1mscript[0m command appeared in 3.0BSD.[m
+[7m Manual page script(1) line 75 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K[m
+[7m Manual page script(1) line 76 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K[1mBUGS[0m[m
+[7m Manual page script(1) line 77 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K       [1mscript[0m places [4meverything[24m in the log file, including linefeeds and[m
+[7m Manual page script(1) line 78 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K       backspaces.  This is not what the naive user expects.[m
+[7m Manual page script(1) line 79 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K[m
+[7m Manual page script(1) line 80 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K       [1mscript[0m is primarily designed for interactive  terminal  sessions.[m
+[7m Manual page script(1) line 81 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K       When  stdin  is  not a terminal (for example: [1mecho[0m [1mfoo[0m [1m|[0m [1mscript[0m),[m
+[7m Manual page script(1) line 82 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K       then the session can hang, because the interactive  shell  within[m
+[7m Manual page script(1) line 83 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K       the  script  session  misses  EOF  and [1mscript[0m has no clue when to[m
+[7m Manual page script(1) line 84 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K       close the session.  See the [1mNOTES[0m section for more information.[m
+[7m Manual page script(1) line 85 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K[m
+[7m Manual page script(1) line 86 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K[1mAVAILABILITY[0m[m
+[7m Manual page script(1) line 87 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K       The script command is part  of  the  util-linux  package  and  is[m
+[7m Manual page script(1) line 88 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K       available  from  Linux Kernel Archive ⟨https://www.kernel.org/pub[m
+[7m Manual page script(1) line 89 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K       /linux/utils/util-linux/⟩.[m
+[7m Manual page script(1) line 90 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K[m
+[7m Manual page script(1) line 91 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[Kutil-linux                      June 2014                      SCRIPT(1)[m
+[7m Manual page script(1) line 92 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K[K[7m Manual page script(1) line 92/135 (END) (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K[K[7m Manual page script(1) line 92/135 (END) (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K[K[7m Manual page script(1) line 92/135 (END) (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K[K[7m Manual page script(1) line 92/135 (END) (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K[K[7m Manual page script(1) line 92/135 (END) (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K[K[7m Manual page script(1) line 92/135 (END) (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K[K[7m Manual page script(1) line 92/135 (END) (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K[K[7m Manual page script(1) line 92/135 (END) (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K[K[7m Manual page script(1) line 92/135 (END) (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K[K[7m Manual page script(1) line 92/135 (END) (press h for help or q to quit)[27m[K[K[?1l>[?1049l[23;0;0t]0;ycl@ubuntu: ~/Desktop/xv6-labs-2020[01;32mycl@ubuntu[00m:[01;34m~/Desktop/xv6-labs-2020[00m$ make qemu
+riscv64-linux-gnu-gcc -Wall -Werror -O -fno-omit-frame-pointer -ggdb -DSOL_UTIL -MD -mcmodel=medany -ffreestanding -fno-common -nostdlib -mno-relax -I. -fno-stack-protector -fno-pie -no-pie   -c -o user/find.o user/find.c
+riscv64-linux-gnu-ld -z max-page-size=4096 -N -e main -Ttext 0 -o user/_find user/find.o user/ulib.o user/usys.o user/printf.o user/umalloc.o
+riscv64-linux-gnu-objdump -S user/_find > user/find.asm
+riscv64-linux-gnu-objdump -t user/_find | sed '1,/SYMBOL TABLE/d; s/ .* / /; /^$/d' > user/find.sym
+mkfs/mkfs fs.img README  user/xargstest.sh user/_cat user/_echo user/_forktest user/_grep user/_init user/_kill user/_ln user/_ls user/_mkdir user/_rm user/_sh user/_stressfs user/_usertests user/_grind user/_wc user/_zombie user/_sleep user/_pingpong user/_find 
+nmeta 46 (boot, super, log blocks 30 inode blocks 13, bitmap blocks 1) blocks 954 total 1000
+balloc: first 666 blocks have been allocated
+balloc: write bitmap block at sector 45
+qemu-system-riscv64 -machine virt -bios none -kernel kernel/kernel -m 128M -smp 3 -nographic -drive file=fs.img,if=none,format=raw,id=x0 -device virtio-blk-device,drive=x0,bus=virtio-mmio-bus.0
+
+xv6 kernel is booting
+
+hart 2 starting
+hart 1 starting
+init: starting sh
+$ echo b
+b
+$ echo > b
+$ ec  mkdir a
+$ echo > a/b
+$ find . b
+./b
+usertrap(): unexpected scause 0x000000000000000f pid=7
+            sepc=0x0000000000000320 stval=0x0000000000001e88
+$ QEMU: Terminated
+]0;ycl@ubuntu: ~/Desktop/xv6-labs-2020[01;32mycl@ubuntu[00m:[01;34m~/Desktop/xv6-labs-2020[00m$ ls
+[0m[01;34mconf[0m            [01;34mkernel[0m    typescript              xv6.out.primes
+fs.img          LICENSE   [01;34muser[0m                    xv6.out.xargs
+[01;32mgrade-lab-util[0m  Makefile  xv6.out
+gradelib.py     [01;34mmkfs[0m      xv6.out.find_curdir
+gradelib.pyc    README    xv6.out.find_recursive
+]0;ycl@ubuntu: ~/Desktop/xv6-labs-2020[01;32mycl@ubuntu[00m:[01;34m~/Desktop/xv6-labs-2020[00m$ vim typescript 
+[?1049h[22;0;0t[>4;2m[?1h=[?2004h[1;45r[?12h[?12l[22;2t[22;1t[27m[23m[29m[m[H[2J[?25l[45;1H"typescript"<oeol][ILLEGAL BYTE in line 134] 134L, 16384C[2;1H▽[6n[2;1H  [1;1H[>c]10;?]11;?[1;1H[38;5;130m  1 [mScript started on 2021-06-03 20:30:18-07:00 [TERM="xterm-256color" TTYY[2;1H[38;5;130m    [m="/dev/pts/4" COLUMNS="74" LINES="45"]
+[38;5;130m  2 [m[34m^[[m]0;ycl@ubuntu: ~/Desktop/xv6-labs-2020[34m^G^[[m[01;32mycl@ubuntu[34m^[[m[00m:[34m^[[[m[4;1H[38;5;130m    [m[01;34m~/Desktop/xv6-labs-2020[34m^[[m[00m$ scri[34m^H^[[m[K[34m^H^[[m[K[34m^H^[[m[K[34m^H^[[m[K[34m^G[mmaa[5;1H[38;5;130m    [mn script[34m^M[m
+[38;5;130m  3 [m[34m^[[m[?1049h[34m^[[m[22;0;0t[34m^[[m[?1h[34m^[[m=[34m^M[mSCRIPT(1)[21CUser Commaa[7;1H[38;5;130m    [mnds[20CSCRIPT(1)[34m^[[m[m[34m^M[m
+[38;5;130m  4 [m[34m^[[m[m[34m^M[m
+[38;5;130m  5 [m[34m^[[m[1mNAME[34m^[[m[0m[34m^[[m[m[34m^M[m
+[38;5;130m  6 [m[7Cscript - make typescript of terminal session[34m^[[m[m[34m^M[m
+[38;5;130m  7 [m[34m^[[m[m[34m^M[m
+[38;5;130m  8 [m[34m^[[m[1mSYNOPSIS[34m^[[m[0m[34m^[[m[m[34m^M[m
+[38;5;130m  9 [m[7C[34m^[[m[1mscript[34m^[[m[0m [options] [[34m^[[m[4mfile[34m^[[m[24m][34m^[[m[m[34m^M[m
+[38;5;130m 10 [m[34m^[[m[m[34m^M[m
+[38;5;130m 11 [m[34m^[[m[1mDESCRIPTION[34m^[[m[0m[34m^[[m[m[34m^M[m
+[38;5;130m 12 [m[7C[34m^[[m[1mscript[34m^[[m[0m  makes a typescript of everything displayed onn[17;1H[38;5;130m    [m your termi‐[17;17H[34m^[[m[m[34m^M[m
+[38;5;130m 13 [m[7Cnal.  It is useful for students who need a hardcopy record of   [19;1H[38;5;130m    [man[34m^[[m[m[34m^M[m
+[38;5;130m 14 [m[7Cinteractive  session as proof of an assignment, as the typescrii[21;1H[38;5;130m    [mpt[34m^[[m[m[34m^M[m
+[38;5;130m 15 [m[7Cfile can be printed out later with [34m^[[m[1mlpr[34m^[[m[0m(1).[34m^[[m[m[34m^M[m
+[38;5;130m 16 [m[34m^[[m[m[34m^M[m
+[38;5;130m 17 [m[7CIf the argument [34m^[[m[4mfile[34m^[[m[24m is given, [34m^[[m[1mscript[34m^[[m[0m savee[25;1H[38;5;130m    [ms the dialogue in  this[34m^[[m[m[34m^M[m
+[38;5;130m 18 [m[7C[34m^[[m[4mfile[34m^[[m[24m.  If no filename is given, the dialogue is savee[27;1H[38;5;130m    [md in the file[34m^[[m[m[34m^M[m
+[38;5;130m 19 [m[7C[34m^[[m[1mtypescript[34m^[[m[0m.[34m^[[m[m[34m^M[m
+[38;5;130m 20 [m[34m^[[m[m[34m^M[m
+[38;5;130m 21 [m[34m^[[m[1mOPTIONS[34m^[[m[0m[34m^[[m[m[34m^M[m
+[38;5;130m 22 [m[7CBelow, the [34m^[[m[4msize[34m^[[m[24m argument may be followed  by  the  mm[32;1H[38;5;130m    [multiplicative[34m^[[m[m[34m^M[m
+[38;5;130m 23 [m[7Csuffixes  KiB  (=1024), MiB (=1024*1024), and so on for GiB, Tii[34;1H[38;5;130m    [mB,[34m^[[m[m[34m^M[m
+[38;5;130m 24 [m[7CPiB, EiB, ZiB and YiB (the "iB" is optional,  e.g.  "K"  has  tt[36;1H[38;5;130m    [mhe[34m^[[m[m[34m^M[m
+[38;5;130m 25 [m[7Csame   meaning   as  "KiB"),  or  the  suffixes  KB  (=1000),   [38;1H[38;5;130m    [mMB[34m^[[m[m[34m^M[m
+[38;5;130m 26 [m[7C(=1000*1000), and so on for GB, TB, PB, EB, ZB and YB.[34m^[[m[m[34m^M[m
+[38;5;130m 27 [m[34m^[[m[m[34m^M[m
+[38;5;130m 28 [m[7C[34m^[[m[1m-a[34m^[[m[0m, [34m^[[m[1m--append[34m^[[m[0m[34m^[[m[m[34m^M[m
+[38;5;130m 29 [m[14CAppend the output to [34m^[[m[4mfile[34m^[[m[24m or to [34m^[[m[1mtypescrii[43;1H[38;5;130m    [mpt[34m^[[m[0m, retaining  the[34m^[[m[m[34m^M[m
+[38;5;130m 30 [m[14Cprior contents.[34m^[[m[m[34m^M[m[45;57H1,1[11CTop[1;5H[?25hP+q436f\P+q6b75\P+q6b64\P+q6b72\P+q6b6c\P+q2332\P+q2334\P+q2569\P+q2a37\P+q6b31\[27m[23m[29m[m[H[2J[?25l[1;1H[93m  1 [mScript started on 2021-06-03 20:30:18-07:00 [TERM="xterm-256color" TTYY[2;1H[93m    [m="/dev/pts/4" COLUMNS="74" LINES="45"]
+[93m  2 [m[38;5;81m^[[m]0;ycl@ubuntu: ~/Desktop/xv6-labs-2020[38;5;81m^G^[[m[01;32mycl@ubuntu[38;5;81m^[[m[00m:[38;5;81m^[[[m[4;1H[93m    [m[01;34m~/Desktop/xv6-labs-2020[38;5;81m^[[m[00m$ scri[38;5;81m^H^[[m[K[38;5;81m^H^[[m[K[38;5;81m^H^[[m[K[38;5;81m^H^[[m[K[38;5;81m^G[mmaa[5;1H[93m    [mn script[38;5;81m^M[m
+[93m  3 [m[38;5;81m^[[m[?1049h[38;5;81m^[[m[22;0;0t[38;5;81m^[[m[?1h[38;5;81m^[[m=[38;5;81m^M[mSCRIPT(1)[21CUser Commaa[7;1H[93m    [mnds[20CSCRIPT(1)[38;5;81m^[[m[m[38;5;81m^M[m
+[93m  4 [m[38;5;81m^[[m[m[38;5;81m^M[m
+[93m  5 [m[38;5;81m^[[m[1mNAME[38;5;81m^[[m[0m[38;5;81m^[[m[m[38;5;81m^M[m
+[93m  6 [m[7Cscript - make typescript of terminal session[38;5;81m^[[m[m[38;5;81m^M[m
+[93m  7 [m[38;5;81m^[[m[m[38;5;81m^M[m
+[93m  8 [m[38;5;81m^[[m[1mSYNOPSIS[38;5;81m^[[m[0m[38;5;81m^[[m[m[38;5;81m^M[m
+[93m  9 [m[7C[38;5;81m^[[m[1mscript[38;5;81m^[[m[0m [options] [[38;5;81m^[[m[4mfile[38;5;81m^[[m[24m][38;5;81m^[[m[m[38;5;81m^M[m
+[93m 10 [m[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 11 [m[38;5;81m^[[m[1mDESCRIPTION[38;5;81m^[[m[0m[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 12 [m[7C[38;5;81m^[[m[1mscript[38;5;81m^[[m[0m  makes a typescript of everything displayed onn[17;1H[93m    [m your termi‐[17;17H[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 13 [m[7Cnal.  It is useful for students who need a hardcopy record of   [19;1H[93m    [man[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 14 [m[7Cinteractive  session as proof of an assignment, as the typescrii[21;1H[93m    [mpt[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 15 [m[7Cfile can be printed out later with [38;5;81m^[[m[1mlpr[38;5;81m^[[m[0m(1).[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 16 [m[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 17 [m[7CIf the argument [38;5;81m^[[m[4mfile[38;5;81m^[[m[24m is given, [38;5;81m^[[m[1mscript[38;5;81m^[[m[0m savee[25;1H[93m    [ms the dialogue in  this[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 18 [m[7C[38;5;81m^[[m[4mfile[38;5;81m^[[m[24m.  If no filename is given, the dialogue is savee[27;1H[93m    [md in the file[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 19 [m[7C[38;5;81m^[[m[1mtypescript[38;5;81m^[[m[0m.[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 20 [m[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 21 [m[38;5;81m^[[m[1mOPTIONS[38;5;81m^[[m[0m[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 22 [m[7CBelow, the [38;5;81m^[[m[4msize[38;5;81m^[[m[24m argument may be followed  by  the  mm[32;1H[93m    [multiplicative[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 23 [m[7Csuffixes  KiB  (=1024), MiB (=1024*1024), and so on for GiB, Tii[34;1H[93m    [mB,[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 24 [m[7CPiB, EiB, ZiB and YiB (the "iB" is optional,  e.g.  "K"  has  tt[36;1H[93m    [mhe[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 25 [m[7Csame   meaning   as  "KiB"),  or  the  suffixes  KB  (=1000),   [38;1H[93m    [mMB[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 26 [m[7C(=1000*1000), and so on for GB, TB, PB, EB, ZB and YB.[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 27 [m[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 28 [m[7C[38;5;81m^[[m[1m-a[38;5;81m^[[m[0m, [38;5;81m^[[m[1m--append[38;5;81m^[[m[0m[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 29 [m[14CAppend the output to [38;5;81m^[[m[4mfile[38;5;81m^[[m[24m or to [38;5;81m^[[m[1mtypescrii[43;1H[93m    [mpt[38;5;81m^[[m[0m, retaining  the[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 30 [m[14Cprior contents.[38;5;81m^[[m[m[38;5;81m^M[m[45;57H1,1[11CTop<oeol][ILLEGAL BYTE in line 134] 134L, 16384C[1;5H[?25h[27m[23m[29m[m[H[2J[?25l[1;1H[93m  1 [mScript started on 2021-06-03 20:30:18-07:00 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="74" LINES="45"]
+[93m  2 [m[38;5;81m^[[m]0;ycl@ubuntu: ~/Desktop/xv6-labs-2020[38;5;81m^G^[[m[01;32mycl@ubuntu[38;5;81m^[[m[00m:[38;5;81m^[[m[01;34m~/Desktop/xv6-labs-2020[38;5;81m^[[m[00m$ scri[38;5;81m^H^[[m[K[38;5;81m^H^[[m[K[38;5;81m^H^[[m[K[38;5;81m^H^[[m[K[38;5;81m^G[mman script[38;5;81m^M[m
+[93m  3 [m[38;5;81m^[[m[?1049h[38;5;81m^[[m[22;0;0t[38;5;81m^[[m[?1h[38;5;81m^[[m=[38;5;81m^M[mSCRIPT(1)[21CUser Commands[20CSCRIPT(1)[38;5;81m^[[m[m[38;5;81m^M[m
+[93m  4 [m[38;5;81m^[[m[m[38;5;81m^M[m
+[93m  5 [m[38;5;81m^[[m[1mNAME[38;5;81m^[[m[0m[38;5;81m^[[m[m[38;5;81m^M[m
+[93m  6 [m[7Cscript - make typescript of terminal session[38;5;81m^[[m[m[38;5;81m^M[m
+[93m  7 [m[38;5;81m^[[m[m[38;5;81m^M[m
+[93m  8 [m[38;5;81m^[[m[1mSYNOPSIS[38;5;81m^[[m[0m[38;5;81m^[[m[m[38;5;81m^M[m
+[93m  9 [m[7C[38;5;81m^[[m[1mscript[38;5;81m^[[m[0m [options] [[38;5;81m^[[m[4mfile[38;5;81m^[[m[24m][38;5;81m^[[m[m[38;5;81m^M[m
+[93m 10 [m[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 11 [m[38;5;81m^[[m[1mDESCRIPTION[38;5;81m^[[m[0m[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 12 [m[7C[38;5;81m^[[m[1mscript[38;5;81m^[[m[0m  makes a typescript of everything displayed on your termi‐[12;87H[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 13 [m[7Cnal.  It is useful for students who need a hardcopy record of  an[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 14 [m[7Cinteractive  session as proof of an assignment, as the typescript[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 15 [m[7Cfile can be printed out later with [38;5;81m^[[m[1mlpr[38;5;81m^[[m[0m(1).[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 16 [m[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 17 [m[7CIf the argument [38;5;81m^[[m[4mfile[38;5;81m^[[m[24m is given, [38;5;81m^[[m[1mscript[38;5;81m^[[m[0m saves the dialogue in  this[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 18 [m[7C[38;5;81m^[[m[4mfile[38;5;81m^[[m[24m.  If no filename is given, the dialogue is saved in the file[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 19 [m[7C[38;5;81m^[[m[1mtypescript[38;5;81m^[[m[0m.[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 20 [m[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 21 [m[38;5;81m^[[m[1mOPTIONS[38;5;81m^[[m[0m[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 22 [m[7CBelow, the [38;5;81m^[[m[4msize[38;5;81m^[[m[24m argument may be followed  by  the  multiplicative[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 23 [m[7Csuffixes  KiB  (=1024), MiB (=1024*1024), and so on for GiB, TiB,[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 24 [m[7CPiB, EiB, ZiB and YiB (the "iB" is optional,  e.g.  "K"  has  the[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 25 [m[7Csame   meaning   as  "KiB"),  or  the  suffixes  KB  (=1000),  MB[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 26 [m[7C(=1000*1000), and so on for GB, TB, PB, EB, ZB and YB.[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 27 [m[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 28 [m[7C[38;5;81m^[[m[1m-a[38;5;81m^[[m[0m, [38;5;81m^[[m[1m--append[38;5;81m^[[m[0m[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 29 [m[14CAppend the output to [38;5;81m^[[m[4mfile[38;5;81m^[[m[24m or to [38;5;81m^[[m[1mtypescript[38;5;81m^[[m[0m, retaining  the[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 30 [m[14Cprior contents.[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 31 [m[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 32 [m[7C[38;5;81m^[[m[1m-c[38;5;81m^[[m[0m, [38;5;81m^[[m[1m--command[38;5;81m^[[m[0m [38;5;81m^[[m[4mcommand[38;5;81m^[[m[24m[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 33 [m[14CRun  the  [38;5;81m^[[m[4mcommand[38;5;81m^[[m[24m  rather than an interactive shell.  This[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 34 [m[14Cmakes it easy for a script to capture the output of a pro‐[34;77H[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 35 [m[14Cgram  that  behaves  differently  when its stdout is not a[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 36 [m[14Ctty.[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 37 [m[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 38 [m[7C[38;5;81m^[[m[1m-e[38;5;81m^[[m[0m, [38;5;81m^[[m[1m--return[38;5;81m^[[m[0m[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 39 [m[14CReturn the exit code of the child process.  Uses the  same[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 40 [m[14Cformat as bash termination on signal termination exit code[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 41 [m[14Cis 128+n.  The exit code of the child  process  is  always[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 42 [m[14Cstored in type script file too.[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 43 [m[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 44 [m[7C[38;5;81m^[[m[1m-f[38;5;81m^[[m[0m, [38;5;81m^[[m[1m--flush[38;5;81m^[[m[0m[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 45 [m[14CFlush output after each write.  This is nice for telecoop‐[45;77H[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 46 [m[14Ceration: one person does `mkfifo foo; script -f foo',  and[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 47 [m[38;5;81m^[[m[7m Manual page script(1) line 1 (press h for help or q to quit)[38;5;81m^[[m[27m[38;5;81m^[[m[K[38;5;81m^M^[[m[K [38;5;81m^[[m[KESC[38;5;81m^H^H^H[mESC[38;5;81m^[[m[KO[38;5;81m^H[mO[38;5;81m^[[m[KB[38;5;81m^H[mB[38;5;81m^M^[[m[K[14Canother  can  supe[47;1H[94m@@@                                                                                                                                                          [m[48;140H1,1[11CTop[1;5H[?25h[27m[23m[29m[m[H[2J[?25l[1;1H[93m  1 [mScript started on 2021-06-03 20:30:18-07:00 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="74" LINES="45"]
+[93m  2 [m[38;5;81m^[[m]0;ycl@ubuntu: ~/Desktop/xv6-labs-2020[38;5;81m^G^[[m[01;32mycl@ubuntu[38;5;81m^[[m[00m:[38;5;81m^[[m[01;34m~/Desktop/xv6-labs-2020[38;5;81m^[[m[00m$ scri[38;5;81m^H^[[m[K[38;5;81m^H^[[m[K[38;5;81m^H^[[m[K[38;5;81m^H^[[m[K[38;5;81m^G[mman scripp[3;1H[93m    [mt[38;5;81m^M[m
+[93m  3 [m[38;5;81m^[[m[?1049h[38;5;81m^[[m[22;0;0t[38;5;81m^[[m[?1h[38;5;81m^[[m=[38;5;81m^M[mSCRIPT(1)[21CUser Commands[20CSCRIPT(1)[38;5;81m^[[m[m[38;5;81m^M[m
+[93m  4 [m[38;5;81m^[[m[m[38;5;81m^M[m
+[93m  5 [m[38;5;81m^[[m[1mNAME[38;5;81m^[[m[0m[38;5;81m^[[m[m[38;5;81m^M[m
+[93m  6 [m[7Cscript - make typescript of terminal session[38;5;81m^[[m[m[38;5;81m^M[m
+[93m  7 [m[38;5;81m^[[m[m[38;5;81m^M[m
+[93m  8 [m[38;5;81m^[[m[1mSYNOPSIS[38;5;81m^[[m[0m[38;5;81m^[[m[m[38;5;81m^M[m
+[93m  9 [m[7C[38;5;81m^[[m[1mscript[38;5;81m^[[m[0m [options] [[38;5;81m^[[m[4mfile[38;5;81m^[[m[24m][38;5;81m^[[m[m[38;5;81m^M[m
+[93m 10 [m[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 11 [m[38;5;81m^[[m[1mDESCRIPTION[38;5;81m^[[m[0m[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 12 [m[7C[38;5;81m^[[m[1mscript[38;5;81m^[[m[0m  makes a typescript of everything displayed on your termi‐[13;87H[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 13 [m[7Cnal.  It is useful for students who need a hardcopy record of  an[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 14 [m[7Cinteractive  session as proof of an assignment, as the typescript[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 15 [m[7Cfile can be printed out later with [38;5;81m^[[m[1mlpr[38;5;81m^[[m[0m(1).[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 16 [m[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 17 [m[7CIf the argument [38;5;81m^[[m[4mfile[38;5;81m^[[m[24m is given, [38;5;81m^[[m[1mscript[38;5;81m^[[m[0m saves the dialogue in  this[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 18 [m[7C[38;5;81m^[[m[4mfile[38;5;81m^[[m[24m.  If no filename is given, the dialogue is saved in the file[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 19 [m[7C[38;5;81m^[[m[1mtypescript[38;5;81m^[[m[0m.[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 20 [m[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 21 [m[38;5;81m^[[m[1mOPTIONS[38;5;81m^[[m[0m[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 22 [m[7CBelow, the [38;5;81m^[[m[4msize[38;5;81m^[[m[24m argument may be followed  by  the  multiplicative[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 23 [m[7Csuffixes  KiB  (=1024), MiB (=1024*1024), and so on for GiB, TiB,[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 24 [m[7CPiB, EiB, ZiB and YiB (the "iB" is optional,  e.g.  "K"  has  the[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 25 [m[7Csame   meaning   as  "KiB"),  or  the  suffixes  KB  (=1000),  MB[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 26 [m[7C(=1000*1000), and so on for GB, TB, PB, EB, ZB and YB.[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 27 [m[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 28 [m[7C[38;5;81m^[[m[1m-a[38;5;81m^[[m[0m, [38;5;81m^[[m[1m--append[38;5;81m^[[m[0m[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 29 [m[14CAppend the output to [38;5;81m^[[m[4mfile[38;5;81m^[[m[24m or to [38;5;81m^[[m[1mtypescript[38;5;81m^[[m[0m, retaining  the[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 30 [m[14Cprior contents.[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 31 [m[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 32 [m[7C[38;5;81m^[[m[1m-c[38;5;81m^[[m[0m, [38;5;81m^[[m[1m--command[38;5;81m^[[m[0m [38;5;81m^[[m[4mcommand[38;5;81m^[[m[24m[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 33 [m[14CRun  the  [38;5;81m^[[m[4mcommand[38;5;81m^[[m[24m  rather than an interactive shell.  This[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 34 [m[14Cmakes it easy for a script to capture the output of a pro‐[35;77H[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 35 [m[14Cgram  that  behaves  differently  when its stdout is not a[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 36 [m[14Ctty.[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 37 [m[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 38 [m[7C[38;5;81m^[[m[1m-e[38;5;81m^[[m[0m, [38;5;81m^[[m[1m--return[38;5;81m^[[m[0m[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 39 [m[14CReturn the exit code of the child process.  Uses the  same[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 40 [m[14Cformat as bash termination on signal termination exit code[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 41 [m[14Cis 128+n.  The exit code of the child  process  is  always[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 42 [m[14Cstored in type script file too.[38;5;81m^[[m[m[38;5;81m^M[m
+[93m 43 [m[38;5;81m^[[m[m[38;5;81m^M[m[45;134H1,1[11CTop[1;5H[?25h[?25l[45;124H:[1;5H[45;124H[K[45;1H:[?2004h[?25hq[?25l[?2004l[23;2t[23;1t[45;1H[K[45;1H[?2004l[?1l>[?25h[>4;m[?1049l[23;0;0t]0;ycl@ubuntu: ~/Desktop/xv6-labs-2020[01;32mycl@ubuntu[00m:[01;34m~/Desktop/xv6-labs-2020[00m$ exit
+exit
+
+Script done on 2021-06-03 20:37:26-07:00 [COMMAND_EXIT_CODE="0"]
