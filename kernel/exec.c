@@ -76,7 +76,7 @@ exec(char *path, char **argv)
   stackbase = sp - PGSIZE;
   
   // ------------------------------
-  vmprint(pagetable, 0);
+  if (p->pid == 1) vmprint(pagetable, 0);
 
   // Push argument strings, prepare rest of stack in ustack.
   for(argc = 0; argv[argc]; argc++) {
