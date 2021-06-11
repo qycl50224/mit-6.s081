@@ -119,7 +119,7 @@ sys_sysinfo(void)
 	}	
 	s.freemem = get_total_free();
 	s.nproc = get_num_proc();
-	f (copyout(p->pagetable, dest, (char *)&s, sizeof s) < 0) {
+	if (copyout(p->pagetable, dest, (char *)&s, sizeof s) < 0) {
 		return -1;
 	}
 	return 0;
