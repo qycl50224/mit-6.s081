@@ -74,9 +74,11 @@ exec(char *path, char **argv)
   uvmclear(pagetable, sz-2*PGSIZE);
   sp = sz;
   stackbase = sp - PGSIZE;
+
+  ukvmcopy(pagetable, p->kpagetable, 0, sz);
   
   // ------------------------------
-  if (p->pid == 1) vmprint(pagetable, 0);
+  if (p->pid == 1) vmprint(pagetable);
 
   // Push argument strings, prepare rest of stack in ustack.
   for(argc = 0; argv[argc]; argc++) {

@@ -163,7 +163,7 @@ freeproc(struct proc *p)
   // free the stack
   pte_t *pte;
   pte = walk(p->kpagetable, p->kstack, 0);
-  if (*pte == 0)
+  if (pte == 0)
 	panic("free kstack");
   kfree((void*) PTE2PA(*pte));
   p->kstack = 0;
@@ -172,7 +172,7 @@ freeproc(struct proc *p)
   if(p->pagetable)
     proc_freepagetable(p->pagetable, p->sz);
   if(p->kpagetable)
-	proc_freepagetable(p->kpagetable, p->sz);
+	kproc_freepagetable(p->kpagetable);
   p->pagetable = 0;
   // free proc's kernel pagetable
   p->kpagetable = 0;
@@ -229,6 +229,43 @@ proc_freepagetable(pagetable_t pagetable, uint64 sz)
   uvmfree(pagetable, sz);
 }
 
+
+extern char etext[];
+
+// enery process has a kernel pagetable 
+pagetable_t
+kproc_pagetable(struct proc *p)
+{
+
+  // generate a new kernel pagetable when starting a new process 
+  pagetable_t pt = uvmcreate();
+  if (pt == 0)
+    return 0;
+
+  // uart registers
+  pkvmmap(pt, UART0, UART0, PGSIZE, PTE_R | PTE_W);
+
+  // virtio mmio disk interface
+  pkvmmap(pt, VIRTIO0, VIRTIO0, PGSIZE, PTE_R | PTE_W);
+
+  // PLIC
+  pkvmmap(pt, PLIC, PLIC, 0x400000, PTE_R | PTE_W);
+
+  // map kernel text executable and read-only.
+  pkvmmap(pt, KERNBASE, KERNBASE, (uint64)etext-KERNBASE, PTE_R | PTE_X);
+
+  // map kernel data and the physical RAM we'll make use of.
+  pkvmmap(pt, (uint64)etext, (uint64)etext, PHYSTOP-(uint64)etext, PTE_R | PTE_W);
+
+  // map the trampoline for trap entry/exit to
+  // the highest virtual address in the kernel.
+  pkvmmap(pt, TRAMPOLINE, (uint64)trampoline, PGSIZE, PTE_R | PTE_X);
+
+  pkvmmap(pt, TRAPFRAME, (uint64)(p->trapframe), PGSIZE, PTE_R | PTE_W);
+  return pt;
+}
+
+
 void 
 kproc_freepagetable(pagetable_t kpagetable)
 {
@@ -271,6 +308,9 @@ userinit(void)
   uvminit(p->pagetable, initcode, sizeof(initcode));
   p->sz = PGSIZE;
 
+  ukvmcopy(p->pagetable, p->kpagetable, 0, p->sz);
+
+
   // prepare for the very first "return" from kernel to user.
   p->trapframe->epc = 0;      // user program counter
   p->trapframe->sp = PGSIZE;  // user stack pointer
@@ -293,11 +333,15 @@ growproc(int n)
 
   sz = p->sz;
   if(n > 0){
+	if (PGROUNDUP(sz + n) >= PLIC)
+      return -1;
     if((sz = uvmalloc(p->pagetable, sz, sz + n)) == 0) {
       return -1;
     }
+	ukvmcopy(p->pagetable, p->kpagetable, sz - n, sz);
   } else if(n < 0){
     sz = uvmdealloc(p->pagetable, sz, sz + n);
+	ukvmcopy(p->pagetable, p->kpagetable, sz, sz - n);
   }
   p->sz = sz;
   return 0;
@@ -324,6 +368,7 @@ fork(void)
     return -1;
   }
   np->sz = p->sz;
+  ukvmcopy(np->pagetable, np->kpagetable, 0, np->sz);
 
   np->parent = p;
 
@@ -524,9 +569,9 @@ scheduler(void)
         p->state = RUNNING;
         c->proc = p;
 		// replace kernel pagetable with current proc's kernel pagetable
+
 		w_satp(MAKE_SATP(p->kpagetable));
 		sfence_vma();
-
 
         swtch(&c->context, &p->context);
 
@@ -540,7 +585,8 @@ scheduler(void)
     }
 #if !defined (LAB_FS)
     if(found == 0) {
-	  kvminithart();
+	  w_satp(MAKE_SATP(kernel_pagetable));
+	  sfence_vma();
       intr_on();
       asm volatile("wfi");
     }
