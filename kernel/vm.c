@@ -5,6 +5,8 @@
 #include "riscv.h"
 #include "defs.h"
 #include "fs.h"
+#include "spinlock.h"
+#include "proc.h"
 
 /*
  * the kernel's page table.
@@ -101,10 +103,13 @@ walkaddr(pagetable_t pagetable, uint64 va)
     return 0;
 
   pte = walk(pagetable, va, 0);
-  if(pte == 0)
-    return 0;
-  if((*pte & PTE_V) == 0)
-    return 0;
+  if(pte == 0 || (*pte & PTE_V) == 0){
+	  if (lazy_alloc(va) == 0){
+		  pte = walk(pagetable, va, 0);
+	  } else {
+		  return 0;
+	  }
+  }
   if((*pte & PTE_U) == 0)
     return 0;
   pa = PTE2PA(*pte);
@@ -181,7 +186,8 @@ uvmunmap(pagetable_t pagetable, uint64 va, uint64 npages, int do_free)
 
   for(a = va; a < va + npages*PGSIZE; a += PGSIZE){
     if((pte = walk(pagetable, a, 0)) == 0)
-      panic("uvmunmap: walk");
+	  continue;
+      //panic("uvmunmap: walk");
     if((*pte & PTE_V) == 0)
 	  continue;
       // panic("uvmunmap: not mapped");
@@ -284,7 +290,7 @@ freewalk(pagetable_t pagetable)
       freewalk((pagetable_t)child);
       pagetable[i] = 0;
     } else if(pte & PTE_V){
-      panic("freewalk: leaf");
+      //panic("freewalk: leaf");
     }
   }
   kfree((void*)pagetable);
@@ -316,9 +322,11 @@ uvmcopy(pagetable_t old, pagetable_t new, uint64 sz)
 
   for(i = 0; i < sz; i += PGSIZE){
     if((pte = walk(old, i, 0)) == 0)
-      panic("uvmcopy: pte should exist");
+		continue;
+      //panic("uvmcopy: pte should exist");
     if((*pte & PTE_V) == 0)
-      panic("uvmcopy: page not present");
+		continue;
+      //panic("uvmcopy: page not present");
     pa = PTE2PA(*pte);
     flags = PTE_FLAGS(*pte);
     if((mem = kalloc()) == 0)
@@ -469,3 +477,32 @@ void vmprint(pagetable_t pt)
 	helper(pt, 0);
 }
 
+
+int lazy_alloc(uint64 va)
+{
+
+	struct proc* p = myproc();
+
+	// if va higher than any allocated with sbrk
+	if (va >= p->sz){
+		return -1;
+	}
+	// if va lower than stack address
+	if (va < p->trapframe->sp){
+		return -1;
+	}
+	uint64 ka = (uint64)kalloc();
+	if (ka == 0){
+		return -1;
+	}
+	memset((void*) ka, 0, PGSIZE);
+	// get down of page
+	va = PGROUNDDOWN(va);
+	// map ka to va
+	if (mappages(p->pagetable, va, PGSIZE, ka, PTE_W|PTE_U|PTE_R) != 0) {
+		kfree((void*)ka);
+		return -1;
+	}
+	return 0;
+
+}
