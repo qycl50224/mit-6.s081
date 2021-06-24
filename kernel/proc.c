@@ -262,10 +262,14 @@ fork(void)
   struct proc *np;
   struct proc *p = myproc();
 
+  // ======== need to 
   // Allocate process.
   if((np = allocproc()) == 0){
     return -1;
   }
+  // set PTE_W bit
+  //mappages(p->pagetable, 0, PGSIZE, walkaddr(p->pagetanle, 0), PTE_R|PTE_X|PTE_U );
+  //np->pagetable = p->pagetable;
 
   // Copy user memory from parent to child.
   if(uvmcopy(p->pagetable, np->pagetable, p->sz) < 0){

@@ -5,6 +5,8 @@
 #include "riscv.h"
 #include "defs.h"
 #include "fs.h"
+#include "spinlock.h"
+#include "proc.h"
 
 /*
  * the kernel's page table.
@@ -311,7 +313,6 @@ uvmcopy(pagetable_t old, pagetable_t new, uint64 sz)
   pte_t *pte;
   uint64 pa, i;
   uint flags;
-  char *mem;
 
   for(i = 0; i < sz; i += PGSIZE){
     if((pte = walk(old, i, 0)) == 0)
@@ -319,12 +320,15 @@ uvmcopy(pagetable_t old, pagetable_t new, uint64 sz)
     if((*pte & PTE_V) == 0)
       panic("uvmcopy: page not present");
     pa = PTE2PA(*pte);
+	// incr reference count
+	acquire(&ref_cnt_lock);
+	ref_cnt[(uint64)pa>>12] += 1;
+	release(&ref_cnt_lock);
+	// set PTE_W and PTE_COW
+	*pte &= ~PTE_W;
+	*pte |= PTE_COW;
     flags = PTE_FLAGS(*pte);
-    if((mem = kalloc()) == 0)
-      goto err;
-    memmove(mem, (char*)pa, PGSIZE);
-    if(mappages(new, i, PGSIZE, (uint64)mem, flags) != 0){
-      kfree(mem);
+    if(mappages(new, i, PGSIZE, pa, flags) != 0){
       goto err;
     }
   }
@@ -355,12 +359,29 @@ int
 copyout(pagetable_t pagetable, uint64 dstva, char *src, uint64 len)
 {
   uint64 n, va0, pa0;
-
+  pte_t *pte;
   while(len > 0){
     va0 = PGROUNDDOWN(dstva);
     pa0 = walkaddr(pagetable, va0);
     if(pa0 == 0)
       return -1;
+	pte = walk(pagetable, va0, 0);
+	if ((*pte & PTE_COW)){
+		uint64 newpa = (uint64)kalloc();
+		if (newpa == 0){
+			struct proc *p = myproc();
+			p->killed = 1;
+		}else {
+
+			memmove((char*)newpa, (char*)pa0, PGSIZE);
+			uint flags = PTE_FLAGS(*pte);
+			uvmunmap(pagetable, va0, 1, 1);
+			*pte = PA2PTE(newpa)|PTE_W|flags;
+			*pte &= ~PTE_COW;
+			pa0 = newpa;
+		}
+	}
+
     n = PGSIZE - (dstva - va0);
     if(n > len)
       n = len;
