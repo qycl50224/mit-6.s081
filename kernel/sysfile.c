@@ -138,7 +138,7 @@ sys_link(void)
     return -1;
   }
 
-  ip->nlink++;
+  ip->nlink++; // incr the ref cnt of link
   iupdate(ip);
   iunlock(ip);
 
@@ -158,10 +158,10 @@ sys_link(void)
 
 bad:
   ilock(ip);
-  ip->nlink--;
+  ip->nlink--; // restore the changes cuz its a transaction
   iupdate(ip);
   iunlockput(ip);
-  end_op();
+  end_op(); // only end_op goes correctly can changes change truly
   return -1;
 }
 
